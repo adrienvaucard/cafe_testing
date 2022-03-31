@@ -33,16 +33,12 @@ describe('Coffee Machine tests', () => {
       coffeemachine = new CoffeeMachine(changeMachine, drinks, 50);
     });
 
-    it('add 40cts and request Expresso', () => {
-      expect(coffeemachine.buy("Expresso", 0.40)).toBe(drink1);
-    })
-
-    it('add 10cts and request Expresso', () => {
-      expect(coffeemachine.buy("Expresso", 0.10)).toBe(`You need 0.3 more`);
-    })
-
-    it('add 600cts and request Expresso', () => {
-      drink1.change = 0.1;
-      expect(coffeemachine.buy("Expresso", 0.60)).toBe(drink1);
-    })
+    it.each`
+    money               | coffeeName      | result
+    ${0.40}             | ${"Expresso"}   | ${new Drink("Expresso", 0.40)} 
+    ${0.10}             | ${"Expresso"}   | ${'You need 0.3 more'} 
+    ${0.60}             | ${"Expresso"}   | ${new Drink("Expresso", 0.40, 0.2)}  
+    `('Test coffee serving with differents money amounts', ({ coffeeName, money, result }) => {
+        expect(coffeemachine.buy(coffeeName, money)).toEqual(result);
+    });
 });
