@@ -1,3 +1,5 @@
+import { PaymentType } from "../enums/paymentType.enum";
+
 export class Payment {
     paymentType: PaymentType;
     
