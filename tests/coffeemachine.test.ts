@@ -38,6 +38,8 @@ describe('Coffee Machine tests', () => {
     ${0.40}             | ${"Expresso"}   | ${new Drink("Expresso", 0.40)} 
     ${0.10}             | ${"Expresso"}   | ${'You need 0.3 more'} 
     ${0.60}             | ${"Expresso"}   | ${new Drink("Expresso", 0.40, 0.2)}  
+    ${0.40}             | ${"Sousoupe"}   | ${'This drink is out of stock'}
+    ${1}                | ${"Soupe"}      | ${new Drink("Soupe", 0.4, 0.6)}
     `('Test coffee serving with differents money amounts', ({ coffeeName, money, result }) => {
         expect(coffeemachine.buy(coffeeName, money)).toEqual(result);
     });

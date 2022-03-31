@@ -46,6 +46,8 @@ export class CoffeeMachine {
                 drink.change = this.giveChange(drinkName, amount);
                 return drink;
             }
+        } else {
+            return `This drink is out of stock`
         }
     }
 }
